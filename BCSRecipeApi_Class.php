@@ -34,6 +34,12 @@ class BCSRecipeAPI extends BCSAPIClass
 		return $this->CallAPI($apipath, $APIFields);
 	}
 
+	public function RecipeLists_ForCourseSelection($Year, $CourseType){
+		$apipath = "/{apikey}/lists/preset/listforcourseselection/{courseyear}/{coursetype}";
+		$APIFields = ['{coursetype}' => $CourseType, '{courseyear}' => $Year];
+		return $this->CallAPI($apipath, $APIFields);
+	}
+
 	public function RecipeSearch_ForStudent($SearchString, $BookingID) {
 
 		$apipath = '/{apikey}/search/forstudent/{bookingid}/{searchstring}';
