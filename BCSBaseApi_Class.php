@@ -18,12 +18,12 @@ class BCSAPIClass {
         return $apipath;
     }
 
-    private function CallAPI($APIPath, $APIFields, $PostData = []) {
+    protected function CallAPI($APIPath, $APIFields, $PostData = []) {
         $UrlBlock = $this->Replacer($APIPath, $APIFields);
         return $this->CallURL($UrlBlock, $PostData);
     }
 
-    private function CallURL($UrlBlock, $PostData = []) {
+    protected function CallURL($UrlBlock, $PostData = []) {
         $url = $this->BuildURLString($UrlBlock);
 
         if (!empty($PostData)){
@@ -37,7 +37,7 @@ class BCSAPIClass {
                 
     }
 
-    private function POSTCURL($UrlBlock,$PostData){
+    protected function POSTCURL($UrlBlock,$PostData){
 
         $datastring = '';
         foreach ($PostData as $key => $value) {
@@ -58,7 +58,7 @@ class BCSAPIClass {
         return $response;        
     }
 
-    private function BuildURLString($UrlBlock){
+    protected function BuildURLString($UrlBlock){
 
         return $this->APIRootURL .   $UrlBlock;
     }
