@@ -3,14 +3,11 @@
 /**
 * 
 */
-
+// ApiVersion : 1.0.1
 require('BCSBaseApi_Class.php');
 
 class BCSRecipeAPI extends BCSAPIClass
 {
-
-
-
 
 	function __construct($APIRootURL, $APIKEY) 
 	{

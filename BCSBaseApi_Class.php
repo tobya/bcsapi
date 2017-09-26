@@ -52,9 +52,9 @@ class BCSAPIClass {
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        print_R( curl_error($ch));
+        //print_R( curl_error($ch));
         $response = curl_exec( $ch );
-        print_R( curl_error($ch));
+        //print_R( curl_error($ch));
         return $response;        
     }
 
