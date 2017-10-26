@@ -16,12 +16,18 @@ class BCSRecipeAPI extends BCSAPIClass
 	}
 
 	public function  CourseBooklets($CourseID, $Week = '-1') {
+		return array('error' => 'CourseBooklets method no longer valid');
+	}
+
+	public function  BookletsByPath($PathID, $Week = '-1') {
+
+
 		if ($Week == -1) {
-			$apipath = '/{apikey}/course/{courseid}/booklets';	
-			$APIFields = ['{courseid}' => $CourseID];
+			$apipath = '/{apikey}/lists/{pathid}/booklets';	
+			$APIFields = ['{pathid}' => $PathID];
 		} else {
-			$apipath = '/{apikey}/course/{courseid}/booklets/week/{bookletweek}';	
-			$APIFields = [	'{courseid}' => $CourseID,
+			$apipath = '/{apikey}/lists/{pathid}/booklets/week/{bookletweek}';	
+			$APIFields = [	'{pathid}' => $PathID,
 										  '{bookletweek}' => $Week];			
 		}
 		return $this->CallAPI($apipath, $APIFields);
@@ -62,6 +68,13 @@ class BCSRecipeAPI extends BCSAPIClass
 		echo $apipath;print_r($PostData);
 		return $this->CallAPI($apipath, $fields, $PostData);
 
+	}
+
+	public function PathInfoByPath($Path) {
+		$apipath = '/{apikey}/lists/searchone/{listsearch}';
+		$fields = ['{listsearch}' => $Path];
+		
+		return $this->CallAPI($apipath, $fields);		
 	}
 
 
