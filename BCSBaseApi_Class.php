@@ -6,7 +6,8 @@ class BCSAPIClass {
 
     protected function Replacer($apipath, $pathfields) {
 
-        //all requests tha thave {apikey} in path should have it replaced
+        // all requests that have {apikey} in path should have it replaced
+        // add it to list of fields to be replaced
         if (isset($this->APIKEY)){
             $pathfields['{apikey}'] = $this->APIKEY;
         }
@@ -26,8 +27,8 @@ class BCSAPIClass {
     protected function CallURL($UrlBlock, $PostData = []) {
         $url = $this->BuildURLString($UrlBlock);
 
+        // Only call POST when required.
         if (!empty($PostData)){
-        
             return $this->POSTCURL($url, $PostData);
         } else {
             $Info = json_decode( file_get_contents($url),true);
