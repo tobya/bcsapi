@@ -1,6 +1,6 @@
 <?php
 
-require('BCSBaseApi_Class.php');
+require_once('BCSBaseApi_Class.php');
 
 class BCSStudentAPI extends BCSAPIClass
 {

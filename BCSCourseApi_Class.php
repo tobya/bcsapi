@@ -1,6 +1,6 @@
 <?php
 
-require('BCSBaseApi_Class.php');
+require_once('BCSBaseApi_Class.php');
 
 class BCSCourseAPI extends BCSAPIClass
 {
@@ -18,10 +18,16 @@ class BCSCourseAPI extends BCSAPIClass
          return $this->CallAPI($apipath, $APIFields);
     }
 
-    public function RunningCourses() {
+    public function RunningCourses($onDate = 'today', $coursetypes = '0,1') {
         
-         $apipath =   '/{apikey}/courses/running';
-         $APIFields = ['{courseid}' => $courseid];
+         $apipath =   '/{apikey}/courses/running/{coursedate}/{coursetypes}';
+         $APIFields = [ '{coursedate}' => $onDate,
+                        '{coursetypes}' => $coursetypes];
          return $this->CallAPI($apipath, $APIFields);
     }
+
+    public function AllRunningEvents($onDate = 'today') {
+        return $this->RunningCourses($onDate, 'All');
+    }
+
 }
