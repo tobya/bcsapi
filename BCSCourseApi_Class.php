@@ -18,6 +18,13 @@ class BCSCourseAPI extends BCSAPIClass
          return $this->CallAPI($apipath, $APIFields);
     }
 
+    public function CourseBookings($courseid) {
+        
+         $apipath =   '/{apikey}/course/{courseid}/bookings';
+         $APIFields = [ '{courseid}' => $courseid];
+         return $this->CallAPI($apipath, $APIFields);
+    }
+
     public function RunningCourses($onDate = 'today', $coursetypes = '0,1') {
         
          $apipath =   '/{apikey}/courses/running/{coursedate}/{coursetypes}';

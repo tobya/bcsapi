@@ -34,9 +34,18 @@ $Output['Count All Events Today:'] = ($AllEvents['count_courses']);
 
 foreach ($AllEvents['courses'] as $key => $value) {
     # code...
-    $Output['RunninGeVENT' . $key] = $value['CourseName'];
+    $Output['Running Event' . $key] = $value['CourseName'];
 }
 
+$AllBookings = $BCSCourse->CourseBookings(102291);
+
+$Output['Course Bookings on ' . $AllBookings['courseinfo']['CourseName']] = $AllBookings['bookings_count'];
+
+$Student = array_pop($AllBookings['bookings']);
+
+$StudentInfo = $BCSStudent->StudentInfo($Student['IndividualID']);
+
+$Output['Studend Info retreived for Student'] = $StudentInfo['student']['FullName'] . ' - ' . $StudentInfo['student']['Email'];
 
 // Output all tests.
 foreach ($Output as $key => $value) {
