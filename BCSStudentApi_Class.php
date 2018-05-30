@@ -23,4 +23,16 @@ class BCSStudentAPI extends BCSAPIClass
          $APIFields = ['{individualid}' => $individualid];
          return $this->CallAPI($apipath, $APIFields);   
     }
+    
+    public function StudentLogin($email, $passwordhash) {
+         $apipath =   '/{apikey}/individual/exists/{email}/{passwordhash}';
+         $APIFields = ['{email}' => $email, '{passwordhash}' => $passwordhash];
+         return $this->CallAPI($apipath, $APIFields);   
+    }
+
+    public function AuthKeyLogin($authkey) {
+         $apipath =   '/{apikey}/individual/remotelogin/{authkey}';
+         $APIFields = ['{authkey}' => $authkey];
+         return $this->CallAPI($apipath, $APIFields);      
+    }
 }
