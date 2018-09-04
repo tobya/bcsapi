@@ -18,6 +18,9 @@ $CourseInfo = $BCSCourse->CourseInfo(102291);
 //print_r($CourseInfo);
 $Output['Retrieved Course:'] = $CourseInfo['course']['CourseName'];
 
+$CourseDesc = $BCSCourse->CourseDescription(102291);
+$Output['CourseDescription:'] = $CourseDesc['course']['Description'];
+//print_r($CourseDesc);
 $RunningCourses = $BCSCourse->RunningCourses();
 
 $Output['Count Standard Courses Today:'] = $RunningCourses['count_courses'];
@@ -47,8 +50,10 @@ $StudentInfo = $BCSStudent->StudentInfo($Student['IndividualID']);
 
 $Output['Studend Info retreived for Student'] = $StudentInfo['student']['FullName'] . ' - ' . $StudentInfo['student']['Email'];
 
+
 // Output all tests.
 foreach ($Output as $key => $value) {
     # code...
     echo '<Li>' . $key . ' : ' . $value;
 }
+
