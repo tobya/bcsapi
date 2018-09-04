@@ -46,11 +46,11 @@ class BCSRecipeAPI extends BCSAPIClass
 		return $this->CallAPI($apipath, $APIFields);
 	}
 
-	public function RecipeSearch_ForStudent($SearchString, $BookingID) {
+	public function RecipeSearch_ForStudent($SearchString, $MetaBookingID) {
 
-		$apipath = '/{apikey}/search/forstudent/{bookingid}/{searchstring}';
+		$apipath = '/{apikey}/search/forstudent/{metabookingid}/{searchstring}';
 		$APIFields = ['{searchstring}' => $SearchString,
-					  			'{bookingid}' => $BookingID	];
+					  '{metabookingid}' => $MetaBookingID	];
 		
 		return $this->CallAPI($apipath, $APIFields);
 	}
