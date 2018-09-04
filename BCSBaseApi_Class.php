@@ -3,6 +3,7 @@
 class BCSAPIClass {
     protected $APIKEY = '';
     protected $APIRootURL = '';
+    protected $LastCalledURL = '';
 
     protected function Replacer($apipath, $pathfields) {
 
@@ -26,7 +27,7 @@ class BCSAPIClass {
 
     protected function CallURL($UrlBlock, $PostData = []) {
         $url = $this->BuildURLString($UrlBlock);
-
+        $LastCalledURL = $url;
         // Only call POST when required.
         if (!empty($PostData)){
             return $this->POSTCURL($url, $PostData);
@@ -59,8 +60,14 @@ class BCSAPIClass {
         return $response;        
     }
 
+
+
     protected function BuildURLString($UrlBlock){
 
         return $this->APIRootURL .   $UrlBlock;
+    }
+
+    public function LastURL()  {
+        return $this->LastCalledURL;
     }
 }

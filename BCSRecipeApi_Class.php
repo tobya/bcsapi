@@ -77,6 +77,20 @@ class BCSRecipeAPI extends BCSAPIClass
 		return $this->CallAPI($apipath, $fields);		
 	}
 
+	public function PathsByPath($Path) {
+		$apipath = '/{apikey}/lists/bypath/{path}';
+		$fields = ['{path}' => $Path];
+		
+		return $this->CallAPI($apipath, $fields);			
+	}
+
+		public function PathByPathID($PathID) {
+		$apipath = '/{apikey}/lists/{listid}';
+		$fields = ['{listid}' => $PathID];
+		
+		return $this->CallAPI($apipath, $fields);			
+	}
+
 
 
 	
