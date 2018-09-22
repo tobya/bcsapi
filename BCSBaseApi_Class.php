@@ -20,7 +20,7 @@ class BCSAPIClass {
         return $apipath;
     }
 
-    protected function CallAPI($APIPath, $APIFields, $PostData = []) {
+    protected function CallAPI($APIPath, $APIFields = [], $PostData = []) {
         $UrlBlock = $this->Replacer($APIPath, $APIFields);
         return $this->CallURL($UrlBlock, $PostData);
     }
