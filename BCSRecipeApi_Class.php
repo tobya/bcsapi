@@ -55,9 +55,9 @@ class BCSRecipeAPI extends BCSAPIClass
 		return $this->CallAPI($apipath, $APIFields);
 	}
 
-	public function RecipeInfo($RecipeGUID){
-		$apipath = '/{apikey}/recipe/infowithurls/{recipeguid}/000';
-		$fields = ['{recipeguid}'=> $RecipeGUID];
+	public function RecipeInfo($RecipeGUID, $MetaBookingID = '000'){
+		$apipath = '/{apikey}/recipe/infowithurls/{recipeguid}/{metabookingid}';
+		$fields = ['{recipeguid}'=> $RecipeGUID, '{metabookingid}' => $MetaBookingID];
 		return $this->CallAPI($apipath,$fields );
 	}
 

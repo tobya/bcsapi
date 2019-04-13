@@ -18,6 +18,17 @@ class BCSStudentAPI extends BCSAPIClass
          return $this->CallAPI($apipath, $APIFields);
     }
 
+    public function  StudentBookings($individualid) {
+         $apipath =   '/{apikey}/individual/{individualid}/bookings';
+         $APIFields = ['{individualid}' => $individualid];
+         return $this->CallAPI($apipath, $APIFields);   
+    }
+
+    public function StudentInfoByID($individualid) {
+         $apipath =   '/{apikey}/individual/exists/id/{individualid}';
+         $APIFields = ['{individualid}' => $individualid];
+         return $this->CallAPI($apipath, $APIFields);   
+    }
     public function StudentInfo($individualid) {
          $apipath =   '/{apikey}/individual/{individualid}';
          $APIFields = ['{individualid}' => $individualid];
@@ -29,6 +40,8 @@ class BCSStudentAPI extends BCSAPIClass
          $APIFields = ['{email}' => $email, '{passwordhash}' => $passwordhash];
          return $this->CallAPI($apipath, $APIFields);   
     }
+
+  
 
     public function AuthKeyLogin($authkey) {
          $apipath =   '/{apikey}/individual/remotelogin/{authkey}';
