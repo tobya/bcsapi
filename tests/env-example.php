@@ -2,3 +2,5 @@
 
 $APIKEY = '';
 $APIURL = '';
+
+$DemoPhotoAPIURL = '';
