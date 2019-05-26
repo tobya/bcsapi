@@ -48,3 +48,22 @@ foreach ($Output as $key => $value) {
     # code...
     echo '<Li>' . $key . ' : ' . $value;
 }
+
+// Course Info
+$CourseInfo = ['FromDate' => '20190108', 'CourseType' => 1];
+
+$paths = $BCSRecipeAPI->PathsByCourse($CourseInfo, 3, 'Thursday', 'PM');
+
+echo "<P>Path Retrieved via PathsByCourse: " . $paths['path']['Path'] . ' ; ' . $paths['path']['PathID'];
+
+
+echo '<P>Retrieving Recipes from Path:<ul>';
+$Recipes = $BCSRecipeAPI->RecipeList($paths['path']['PathID']);
+
+
+foreach ($Recipes['recipes'] as $key => $R) {
+  # code...
+  echo "<li> $R[DocumentTitle] ";
+}
+echo "</ul>";
+

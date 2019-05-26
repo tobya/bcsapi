@@ -84,14 +84,36 @@ class BCSRecipeAPI extends BCSAPIClass
 		return $this->CallAPI($apipath, $fields);			
 	}
 
-		public function PathByPathID($PathID) {
+	public function PathsByCourse($CourseInfo, $Week, $Day, $AMPM){
+		$path = $this->CourseRecipePath($CourseInfo, $Week, $Day, $AMPM);
+
+		return $this->PathsByPath($path);
+	}
+
+	public function PathByPathID($PathID) {
 		$apipath = '/{apikey}/lists/{listid}/full';
 		$fields = ['{listid}' => $PathID];
 		
 		return $this->CallAPI($apipath, $fields);			
 	}
 
+	public function RecipeList($PathID) {
+		return $this->PathByPathID($PathID);
+	}
 
+//------------------------------------------------------------------------------------------
+
+
+	function CourseRecipePath($CourseInfo, $Week, $Day, $AMPM) {
+
+		if ($CourseInfo['CourseType'] == 1) { // 12 week
+
+		list($Year, $StartMonth) = explode(',', date('Y,M', strtotime($CourseInfo['FromDate'])) );
+
+		$path = "Lists\\Courses\\$Year\\12 Week $StartMonth%\\%Week $Week\\$Day%\\%$AMPM%";
+		return $path;
+		}
+	}
 
 	
 
