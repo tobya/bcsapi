@@ -8,6 +8,10 @@ $BCSRecipeAPI = new BCSRecipeAPI($RecipeAPIURL, $RecipeAPIKEY);
 
 $PathInfo = $BCSRecipeAPI->PathInfoByPath('Lists\Courses\2018\12 Week Jan');
 
+
+
+$Output['RecipeAPIURL'] = $RecipeAPIURL;
+
 $Output['PathInfo'] = $PathInfo['list']['Path'];
 $Output['PathInfoID'] = $PathInfo['list']['PathID'];
 
@@ -15,7 +19,7 @@ $Output['PathInfoID'] = $PathInfo['list']['PathID'];
 $Booklets = $BCSRecipeAPI->BookletsByPath($PathInfo['list']['PathID']);
 //$app->get('/{apikey}/lists/{pathid}/booklets/week/{bookletweek}','BookletController@coursebookletsforweek') ;
 //print_r($Booklets);
-$Output['Booklets Details'] = "<PRE>" . print_r($Booklets['Booklets'][6],true) . "</PRE>"; 
+$Output['Booklets Details - Shown Here:'] = "<PRE>" . print_r($Booklets['Booklets'][6],true) . "</PRE>"; 
 $PDFUrl = $Booklets['Booklets'][6]['url'];
 $Output['Booklet Link'] = "<a href='$PDFUrl'>Booklet PDF </a>";
 
@@ -63,7 +67,7 @@ $Recipes = $BCSRecipeAPI->RecipeList($paths['path']['PathID']);
 
 foreach ($Recipes['recipes'] as $key => $R) {
   # code...
-  echo "<li> $R[DocumentTitle] ";
+  echo "<li> $R[DocumentTitle] - <a href='$R[url_pdf]'> View PDF</a> | <a href='$R[url_html]'> View html</a> | <a href='$R[url_doc]'> View Word Doc</a> ";
 }
 echo "</ul>";
 
