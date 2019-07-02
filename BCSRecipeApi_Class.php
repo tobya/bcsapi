@@ -86,7 +86,9 @@ class BCSRecipeAPI extends BCSAPIClass
 
 	public function PathsByCourse($CourseInfo, $Week, $Day, $AMPM){
 		$path = $this->CourseRecipePath($CourseInfo, $Week, $Day, $AMPM);
-
+		//print_r($CourseInfo);
+	//	echo $path;
+		//die;
 		return $this->PathsByPath($path);
 	}
 
