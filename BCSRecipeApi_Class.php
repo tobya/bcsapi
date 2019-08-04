@@ -45,6 +45,11 @@ class BCSRecipeAPI extends BCSAPIClass
 		$APIFields = ['{coursetype}' => $CourseType, '{courseyear}' => $Year];
 		return $this->CallAPI($apipath, $APIFields);
 	}
+	public function RecipeLists_SearchForCourseSelection($Year, $CourseType, $SearchString){
+		$apipath = "/{apikey}/lists/preset/listforcourseselection/{courseyear}/{coursetype}/{searchstring}";
+		$APIFields = ['{coursetype}' => $CourseType, '{courseyear}' => $Year, '{searchstring}' => $SearchString];
+		return $this->CallAPI($apipath, $APIFields);
+	}
 
 	public function RecipeSearch_ForStudent($SearchString, $MetaBookingID) {
 
