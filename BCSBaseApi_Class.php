@@ -27,7 +27,8 @@ class BCSAPIClass {
 
     protected function CallURL($UrlBlock, $PostData = []) {
         $url = $this->BuildURLString($UrlBlock);
-        $LastCalledURL = $url;
+        //echo $url;
+        $this->LastCalledURL = $url;
         // Only call POST when required.
         if (!empty($PostData)){
             return $this->POSTCURL($url, $PostData);

@@ -49,4 +49,26 @@ class BCSCourseAPI extends BCSAPIClass
         return $this->RunningCourses($onDate, 'All');
     }
 
+
+
+
+    //---------------------------------------------------------------
+
+    // Given a Course and a Week Day combination - will return the date.
+    function CourseWeekDate($CourseID, $Week, $DayofWeek){
+        $Dates = $this->AllCourseDates($CourseID) ;
+
+        foreach ($Dates['days'] as $key => $D) {
+            # code...
+            if ($D['week'] == $Week){
+                if ($D['Day'] == $DayofWeek){
+                    return $D['Date'];
+                }
+            }
+        }
+        return false;
+
+    }
+
+
 }
