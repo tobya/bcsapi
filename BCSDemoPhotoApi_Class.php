@@ -10,7 +10,7 @@ class BCSDemoPhotoAPI extends BCSAPIClass
     }
 
     // This function needs to be deleted, it is named wrong, it doesnt
-    // return images it returns gallereies
+    // return images it returns galleries
     public function  AllImages() {
 
          $apipath =   '/all';
@@ -67,16 +67,3 @@ class BCSDemoPhotoAPI extends BCSAPIClass
     }
 }
 
-/*
-
-$router->get('/all', 'photoController@AllPhotoInfo');
-$router->get('/all/{year}', 'photoController@YearPhotoInfo');
-//$router->get('/images/', 'photoController@GalleryAlbum');
-$router->get('/images/random/', 'photoController@GalleryImageRandom');
-$router->get('/gallery/{demodate}', 'photoController@GalleryAlbum');
-$router->get('/gallery/{demodate}/nocache', 'photoController@GalleryAlbum_noCache');
-$router->get('/gallery/{demodate}/html/{template}', 'photoController@HTMLGalleryAlbum');
-
-
-$router->get('/purgecache/', 'photoController@PurgeCache');
-*/
