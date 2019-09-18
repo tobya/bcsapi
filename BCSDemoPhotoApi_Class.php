@@ -30,9 +30,23 @@ class BCSDemoPhotoAPI extends BCSAPIClass
 
 
     // Returns 1 random image from all galleries and all images.
-    public function RandomImage() {
+    public function RandomImage($Year = -1, $Month = -1, $Day = -1) {
          $apipath =   '/images/random/';
-         return $this->CallAPI($apipath);
+         $fields = [];
+         if ($Year > -1 ){
+            $apipath .= '{year}/';
+            $fields['{year}'] = $Year;
+         }
+         if ($Month > -1 ){
+            $apipath .= '{Month}/';
+            $fields['{Month}'] = $Month;
+         } 
+         if ($Day > -1 ){
+            $apipath .= '{Day}/';
+            $fields['{Day}'] = $Day;
+         }
+
+         return $this->CallAPI($apipath, $fields);
     }
 
 
