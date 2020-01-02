@@ -19,6 +19,12 @@ if ($PathID > 0){
   $PathInfo  = $BCSRecipeAPI->PathByPathID($PathID);
 }
 
-
+foreach ($PathInfo['children'] as $key => &$P) {
+  # code...
+  $url = "recipebrowse.php?path=" . urlencode($P['Path']);
+  $PathInfo['nextpath'][$key]['url'] = $url;
+  echo " <a href='$url'>$url</a>  <BR><li>\n";
+}
 
 preprint_r($PathInfo);
+
