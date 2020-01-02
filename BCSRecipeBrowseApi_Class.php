@@ -34,31 +34,29 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
         return $Paths;
      }
 
-     $Paths = ['parentpath' => $Path];
+     $Paths = ['parentpath' => $Path, 'parent' => $RetrievedPath, 'children' => [] , 'children_count' => ($Browse['paths_count'] -1)];
+
     foreach ($Browse['paths'] as $key => $p) {
       # code...
 
 
      if (substr_count($p['Path'], '\\') == $NextPathLevel){ 
      
-        $Paths['nextpath'][] = $p;
+        $Paths['children'][] = $p;
 
-        if ($NextPathLevel == BCSRecipeBrowseAPI::RECIPEPATH_LEVEL_WEEK||$NextPathLevel == BCSRecipeBrowseAPI::RECIPEPATH_LEVEL_COURSE){
-
-          $Paths['recipepath'][] = $p; 
-        }
-
-       if ($p['RecipeCount'] > 0) {
-
-        $Paths['recipebrowse'][] = $p; 
-
-        $ListInfo = $this->PathByPathID($p['PathID']);
-
-        $Paths['recipes'] = $ListInfo;
-
-        }
       }
       }
+
+       if ($Paths['parent']['RecipeCount'] > 0) {
+
+         
+
+        $ListInfo = $this->PathByPathID($Paths['parent']['PathID']);
+
+        $Paths['recipes'] = $ListInfo['recipes'];
+
+        }
+
         return $Paths;
 
     }
