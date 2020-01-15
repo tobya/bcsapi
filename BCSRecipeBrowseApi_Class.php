@@ -20,7 +20,7 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
 
      $PathLevel = substr_count($Path, '\\');
      $NextPathLevel = $PathLevel +1;
-    pprint_r($Browse);
+    //pprint_r($Browse);
      //exit;
     //
 
@@ -29,7 +29,7 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
      if ($RetrievedPath['RecipeCount'] > 0 && $Browse['paths_count'] == 0){
         $ListInfo = $this->PathByPathID($p['PathID']);
 
-        $Paths['path'] = $RetrievedPath;
+        $Paths['path']    = $RetrievedPath;
         $Paths['recipes'] = $ListInfo['recipes'];      
         return $Paths;
      }
