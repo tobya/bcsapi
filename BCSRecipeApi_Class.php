@@ -72,6 +72,11 @@ class BCSRecipeAPI extends BCSAPIClass
 		$APIFields = ['{coursetype}' => $CourseType, '{courseyear}' => $Year];
 		return $this->CallAPI($apipath, $APIFields);
 	}
+	public function RecipeLists_SearchForCourseSelection($Year, $CourseType, $SearchString){
+		$apipath = "/{apikey}/lists/preset/listforcourseselection/{courseyear}/{coursetype}/{searchstring}";
+		$APIFields = ['{coursetype}' => $CourseType, '{courseyear}' => $Year, '{searchstring}' => $SearchString];
+		return $this->CallAPI($apipath, $APIFields);
+	}
 
 	public function RecipeSearch_ForStudent($SearchString, $MetaBookingID) {
 
@@ -123,7 +128,11 @@ class BCSRecipeAPI extends BCSAPIClass
 	public function PathsByCourse($CourseInfo, $Week, $Day, $AMPM){
 		$path = $this->CourseRecipePath($CourseInfo, $Week, $Day, $AMPM);
 
+		if ($path != ""){
+
 		return $this->PathsByPath($path);
+		}
+		return json_encode([]);
 	}
 
 	public function PathByPathID($PathID) {
@@ -142,12 +151,14 @@ class BCSRecipeAPI extends BCSAPIClass
 
 	function CourseRecipePath($CourseInfo, $Week, $Day, $AMPM) {
 
-		if ($CourseInfo['CourseType'] == 1) { // 12 week
+		if ($CourseInfo['CourseType'] == 1 || $CourseInfo['CourseType'] == 3) { // 12 week / long
 
 		list($Year, $StartMonth) = explode(',', date('Y,M', strtotime($CourseInfo['FromDate'])) );
 
 		$path = "Lists\\Courses\\$Year\\12 Week $StartMonth%\\%Week $Week\\$Day%\\%$AMPM%";
 		return $path;
+		} else {
+			return "";
 		}
 	}
 

@@ -18,6 +18,13 @@ class BCSStudentAPI extends BCSAPIClass
          return $this->CallAPI($apipath, $APIFields);
     }
 
+    public function DutyInfo($bookingid, $week){
+
+         $apipath =   '/{apikey}/booking/{bookingid}/rota/week/{week}/details';
+         $APIFields = ['{bookingid}' => $bookingid,'{week}' => $week ];
+         return $this->CallAPI($apipath, $APIFields);  
+    }
+
     public function  StudentBookings($individualid) {
          $apipath =   '/{apikey}/individual/{individualid}/bookings';
          $APIFields = ['{individualid}' => $individualid];

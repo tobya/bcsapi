@@ -10,7 +10,7 @@ class BCSDemoPhotoAPI extends BCSAPIClass
     }
 
     // This function needs to be deleted, it is named wrong, it doesnt
-    // return images it returns gallereies
+    // return images it returns galleries
     public function  AllImages() {
 
          $apipath =   '/all';
@@ -39,9 +39,23 @@ class BCSDemoPhotoAPI extends BCSAPIClass
 
 
     // Returns 1 random image from all galleries and all images.
-    public function RandomImage() {
+    public function RandomImage($Year = -1, $Month = -1, $Day = -1) {
          $apipath =   '/images/random/';
-         return $this->CallAPI($apipath);
+         $fields = [];
+         if ($Year > -1 ){
+            $apipath .= '{year}/';
+            $fields['{year}'] = $Year;
+         }
+         if ($Month > -1 ){
+            $apipath .= '{Month}/';
+            $fields['{Month}'] = $Month;
+         } 
+         if ($Day > -1 ){
+            $apipath .= '{Day}/';
+            $fields['{Day}'] = $Day;
+         }
+
+         return $this->CallAPI($apipath, $fields);
     }
 
 
@@ -62,16 +76,3 @@ class BCSDemoPhotoAPI extends BCSAPIClass
     }
 }
 
-/*
-
-$router->get('/all', 'photoController@AllPhotoInfo');
-$router->get('/all/{year}', 'photoController@YearPhotoInfo');
-//$router->get('/images/', 'photoController@GalleryAlbum');
-$router->get('/images/random/', 'photoController@GalleryImageRandom');
-$router->get('/gallery/{demodate}', 'photoController@GalleryAlbum');
-$router->get('/gallery/{demodate}/nocache', 'photoController@GalleryAlbum_noCache');
-$router->get('/gallery/{demodate}/html/{template}', 'photoController@HTMLGalleryAlbum');
-
-
-$router->get('/purgecache/', 'photoController@PurgeCache');
-*/

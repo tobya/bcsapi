@@ -27,7 +27,7 @@ echo "
 ";
 
 $RandomImage = $BCSDemoPHotos->RandomImage();
-//print_r($RandomImage);
+
 $img = $RandomImage['randomimage'];
 echo "
 <h3>Random Image </h3> 
