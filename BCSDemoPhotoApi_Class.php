@@ -24,7 +24,16 @@ class BCSDemoPhotoAPI extends BCSAPIClass
     // Return all Galleries from PhotoaPI.  Should be cached so fast.
     public function  AllGalleries() {
 
-         $apipath =   '/all';
+         $apipath =   '/allconvertzen';
+         return $this->CallAPI($apipath);
+    }
+
+    /*
+        Return a list of Pathids with their corresponding Gallerypaths.
+    */
+    public function  ListtoGalleryPathURL() {
+
+         $apipath =   '/gallerypathurls';
          return $this->CallAPI($apipath);
     }
 

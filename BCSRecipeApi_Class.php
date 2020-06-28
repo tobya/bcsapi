@@ -52,7 +52,10 @@ class BCSRecipeAPI extends BCSAPIClass
 		//echo $strList;
 		//print_r($Images);
 		foreach ($Images['images'] as $key => $I) {
+				$ImgCount = count($I);
 				$RecipeList['recipes'][$key]['images'] = $I;
+				$RecipeList['recipes'][$key]['images_count'] = $ImgCount;
+
 		}
 		return $RecipeList;
 	}
@@ -83,6 +86,15 @@ class BCSRecipeAPI extends BCSAPIClass
 		$apipath = '/{apikey}/recipe/infowithurls/{recipeguid}/{metabookingid}';
 		$fields = ['{recipeguid}'=> $RecipeGUID, '{metabookingid}' => $MetaBookingID];
 		return $this->CallAPI($apipath,$fields );
+	}
+
+	Public function RecipeInfowithImages($RecipeGUID, $MetaBookingID = '000'){
+		$RecipeInfo = $this->RecipeInfo($RecipeGUID, $MetaBookingID);
+		$apipath = '/{apikey}/images/list/{recipeid}';
+		$APIFields = ['{recipeid}' => $RecipeInfo['recipe']['VersionID']];
+		$RecipeImageList = $this->CallAPI($apipath, $APIFields);
+		$RecipeInfo['images'] = $RecipeImageList['images'];
+		return $RecipeInfo;
 	}
 
 	public function UpdateList($ListID, $Updates){
