@@ -39,6 +39,33 @@ class BCSRecipeAPI extends BCSAPIClass
 		$APIFields = ['{searchstring}' => $SearchString];
 		return $this->CallAPI($apipath, $APIFields);
 	}
+	public function  RecipeSearchwithImages( $SearchString){
+		$apipath = '/{apikey}/search/paths/{searchstring}';
+		$APIFields = ['{searchstring}' => $SearchString];
+		$RecipeList = $this->CallAPI($apipath, $APIFields);
+		foreach ($RecipeList['recipes'] as $key => $R) {
+			$Rids[] = $R['VersionID'];
+
+		}
+		$strList = implode(',', $Rids);
+		$Images = $this->RecipeList_Images($strList);
+		//echo $strList;
+		//print_r($Images);
+		foreach ($Images['images'] as $key => $I) {
+				$ImgCount = count($I);
+				$RecipeList['recipes'][$key]['images'] = $I;
+				$RecipeList['recipes'][$key]['images_count'] = $ImgCount;
+
+		}
+		return $RecipeList;
+	}
+
+	public function RecipeList_Images($RecipeIDList){
+		$apipath = '/{apikey}/images/lists/{recipeidlist}';
+		$APIFields = ['{recipeidlist}' => $RecipeIDList];
+		$RecipeImageList = $this->CallAPI($apipath, $APIFields);
+		return $RecipeImageList;
+	}
 
 	public function RecipeLists_ForCourseSelection($Year, $CourseType){
 		$apipath = "/{apikey}/lists/preset/listforcourseselection/{courseyear}/{coursetype}";
@@ -64,6 +91,15 @@ class BCSRecipeAPI extends BCSAPIClass
 		$apipath = '/{apikey}/recipe/infowithurls/{recipeguid}/{metabookingid}';
 		$fields = ['{recipeguid}'=> $RecipeGUID, '{metabookingid}' => $MetaBookingID];
 		return $this->CallAPI($apipath,$fields );
+	}
+
+	Public function RecipeInfowithImages($RecipeGUID, $MetaBookingID = '000'){
+		$RecipeInfo = $this->RecipeInfo($RecipeGUID, $MetaBookingID);
+		$apipath = '/{apikey}/images/list/{recipeid}';
+		$APIFields = ['{recipeid}' => $RecipeInfo['recipe']['VersionID']];
+		$RecipeImageList = $this->CallAPI($apipath, $APIFields);
+		$RecipeInfo['images'] = $RecipeImageList['images'];
+		return $RecipeInfo;
 	}
 
 	public function UpdateList($ListID, $Updates){

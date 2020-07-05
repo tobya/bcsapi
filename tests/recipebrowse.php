@@ -19,9 +19,9 @@ if ($PathID > 0){
   $PathInfo  = $BCSRecipeAPI->PathByPathID($PathID);
 }
 
-foreach ($PathInfo['nextpath'] as $key => &$P) {
+foreach ($PathInfo['children'] as $key => &$P) {
   # code...
-  $url = "https://backoffice.cookingisfun.ie/vendor/tobya/bcsapi/tests/recipebrowse.php?path=" . urlencode($P['Path']);
+  $url = "recipebrowse.php?path=" . urlencode($P['Path']);
   $PathInfo['nextpath'][$key]['url'] = $url;
   echo " <a href='$url'>$url</a>  <BR><li>\n";
 }

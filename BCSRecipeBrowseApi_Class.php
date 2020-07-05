@@ -20,7 +20,7 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
 
      $PathLevel = substr_count($Path, '\\');
      $NextPathLevel = $PathLevel +1;
-    pprint_r($Browse);
+    //pprint_r($Browse);
      //exit;
     //
 
@@ -30,39 +30,32 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
      if ($RetrievedPath['RecipeCount'] > 0 && $Browse['paths_count'] == 0){
         $ListInfo = $this->PathByPathID($p['PathID']);
 
-        $Paths['path'] = $RetrievedPath;
+        $Paths['path']    = $RetrievedPath;
         $Paths['recipes'] = $ListInfo['recipes'];      
         return $Paths;
      }
 
-     $Paths = ['parentpath' => $Path, 'nextpath' => []];
+     $Paths = ['parentpath' => $Path, 'parent' => $RetrievedPath, 'children' => [] , 'children_count' => ($Browse['paths_count'] -1)];
+
     foreach ($Browse['paths'] as $key => $p) {
       # code...
 
 
      if (substr_count($p['Path'], '\\') == $NextPathLevel){ 
      
+        $Paths['children'][] = $p;
 
 
+       if ($Paths['parent']['RecipeCount'] > 0) {
 
-        $Paths['nextpath'][] = $p;
+         
 
-        if ($NextPathLevel == BCSRecipeBrowseAPI::RECIPEPATH_LEVEL_WEEK||$NextPathLevel == BCSRecipeBrowseAPI::RECIPEPATH_LEVEL_COURSE){
+        $ListInfo = $this->PathByPathID($Paths['parent']['PathID']);
 
-          $Paths['recipepath'][] = $p; 
+        $Paths['recipes'] = $ListInfo['recipes'];
+
         }
 
-      // if ($p['RecipeCount'] > 0) {
-//
-      //  $Paths['recipebrowse'][] = $p; 
-//
-      //  $ListInfo = $this->PathByPathID($p['PathID']);
-//
-      //  $Paths['recipes'] = $ListInfo;
-//
-      //  }
-      }
-      }
         return $Paths;
 
     }

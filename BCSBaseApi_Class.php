@@ -33,8 +33,19 @@ class BCSAPIClass {
         if (!empty($PostData)){
             return $this->POSTCURL($url, $PostData);
         } else {
-            $Info = json_decode( file_get_contents($url),true);
+            $a = file_get_contents($url);
+          
+            $Info = json_decode($a,true);
+          
+            if (is_null( $Info)) { // json decode error
+               // echo 'Info is empty';
+                $Info = [];
+                $Info['jsonerror'] = json_last_error();
+                $Info['jsonerrormsg'] = json_last_error_msg();
+            } 
+          
             $Info['url'] = $url;
+            
             return $Info;
         } 
                 
