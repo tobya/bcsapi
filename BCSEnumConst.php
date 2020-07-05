@@ -8,7 +8,7 @@
 //***********************************************************************************
 //*  ALL GLOBAL VARS MUST BE EXPLICITLY DECLARED AS GLOBAL FOR API USAGE.
 //***********************************************************************************
- //Generated on: 20200705 10:49:26 
+ //Generated on: 20200705 11:52:33 
 
  //DEFINE AS VARS 
 GLOBAL $COURSETYPE_SHORT ;
