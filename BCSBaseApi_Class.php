@@ -4,6 +4,7 @@ class BCSAPIClass {
     protected $APIKEY = '';
     protected $APIRootURL = '';
     protected $LastCalledURL = '';
+    public $JSONAsArray = true;
 
     protected function Replacer($apipath, $pathfields) {
 
@@ -33,8 +34,12 @@ class BCSAPIClass {
         if (!empty($PostData)){
             return $this->POSTCURL($url, $PostData);
         } else {
-            $Info = json_decode( file_get_contents($url),true);
+            $Info = json_decode( file_get_contents($url),$this->JSONAsArray);
+            if ($this->JSONAsArray){                
             $Info['url'] = $url;
+            } else {
+            $Info->url = $url;
+            }
             return $Info;
         } 
                 
