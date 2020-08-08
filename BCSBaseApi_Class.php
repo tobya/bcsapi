@@ -34,10 +34,22 @@ class BCSAPIClass {
         if (!empty($PostData)){
             return $this->POSTCURL($url, $PostData);
         } else {
+
+            /*
+                  $Info = json_decode( file_get_contents($url),$this->JSONAsArray);
+            if ($this->JSONAsArray){                
+            $Info['url'] = $url;
+            } else {
+            $Info->url = $url;
+            }
+
+            */
             $a = file_get_contents($url);
           
-            $Info = json_decode($a,true);
+            $Info = json_decode($a,$this->JSONAsArray);
           
+             if ($this->JSONAsArray){  
+
             if (is_null( $Info)) { // json decode error
                // echo 'Info is empty';
                 $Info = [];
@@ -46,6 +58,17 @@ class BCSAPIClass {
             } 
           
             $Info['url'] = $url;
+                } else {
+
+                    if (is_null( $Info)) { // json decode error
+                       // echo 'Info is empty';
+                        
+                        $Info->jsonerror = json_last_error();
+                        $Info->jsonerrormsg = json_last_error_msg();
+                    } 
+                  
+                    $Info->url = $url;
+                }
             
             return $Info;
         } 
