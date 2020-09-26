@@ -1,0 +1,26 @@
+{
+    "name": "tobya/BCSApi",
+    "description": "PHP Wrapper for BCS Api Libraries",
+    "keywords": [
+        "php",        
+        "bcs api"
+    ],
+    "homepage": "https://github.com/tobya/bcsapi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "toby Allen",
+            "email": "toby@toflidium.com"
+            
+        }
+    ],
+    "require": {
+        "php" : ">=5.5.0",
+        "ext-curl": "*"
+    },
+  "autoload": {
+    "psr-4": {
+      "BCS\\":"src/"
+    }
+  }
+}
