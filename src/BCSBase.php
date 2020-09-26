@@ -1,6 +1,6 @@
 <?php
-
-class BCSAPIClass {
+namespace BCS\BCSApi;
+class BCSBase {
     protected $APIKEY = '';
     protected $APIRootURL = '';
     protected $LastCalledURL = '';

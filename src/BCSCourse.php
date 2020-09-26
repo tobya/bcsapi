@@ -1,8 +1,9 @@
 <?php
+namespace BCS\BCSApi;
 
-require_once('BCSBaseApi_Class.php');
+use BCS\BCSApi\BCSBase
 
-class BCSCourseAPI extends BCSAPIClass
+class BCSCourse extends BCSBase
 {
 
     function __construct($APIRootURL, $APIKEY) 

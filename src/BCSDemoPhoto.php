@@ -1,8 +1,10 @@
 <?php
 
-require_once('BCSBaseApi_Class.php');
+namespace BCS\BCSApi;
 
-class BCSDemoPhotoAPI extends BCSAPIClass
+use BCS\BCSApi\BCSBase
+
+class BCSDemoPhoto extends BCSBase
 {
     function __construct($APIRootURL) 
     {
