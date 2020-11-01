@@ -46,7 +46,6 @@ class BCSAPIClass {
         foreach ($PostData as $key => $value) {
             $datastring .= "$key=" . urlencode($value) . '&';
         }
-
         $ch = curl_init( $UrlBlock );
         curl_setopt( $ch, CURLOPT_POST, 1);
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $datastring);
