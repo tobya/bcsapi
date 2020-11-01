@@ -49,6 +49,12 @@ class BCSCourseAPI extends BCSAPIClass
         return $this->RunningCourses($onDate, 'All');
     }
 
+    Public function CourseStreamInfo($courseid){
+        $apipath = "/{apikey}/course/{courseid}/stream";
+        $APIFields = ['{courseid}' => $courseid];
+        return $this->CallAPI($apipath, $APIFields);
+    }
+
 
 
 
