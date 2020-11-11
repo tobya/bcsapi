@@ -5,11 +5,7 @@ require_once('BCSBaseApi_Class.php');
 class BCSCourseAPI extends BCSAPIClass
 {
 
-    function __construct($APIRootURL, $APIKEY) 
-    {
-        $this->APIKEY = $APIKEY;
-        $this->APIRootURL = $APIRootURL;
-    }
+
 
     public function  CourseInfo($courseid) {
 

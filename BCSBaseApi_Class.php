@@ -6,6 +6,13 @@ class BCSAPIClass {
     protected $LastCalledURL = '';
     public $JSONAsArray = true;
 
+    function __construct($APIRootURL, $APIKEY, $AsArray = true) 
+    {
+        $this->APIKEY = $APIKEY;
+        $this->APIRootURL = $APIRootURL;
+        $this->JSONAsArray = $AsArray;
+    }
+
     protected function Replacer($apipath, $pathfields) {
 
         // all requests that have {apikey} in path should have it replaced
