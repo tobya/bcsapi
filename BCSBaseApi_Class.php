@@ -42,19 +42,10 @@ class BCSAPIClass {
             return $this->POSTCURL($url, $PostData);
         } else {
 
-            /*
-                  $Info = json_decode( file_get_contents($url),$this->JSONAsArray);
-            if ($this->JSONAsArray){                
-            $Info['url'] = $url;
-            } else {
-            $Info->url = $url;
-            }
-
-            */
             $a = file_get_contents($url);
-          
+
             $Info = json_decode($a,$this->JSONAsArray);
-          
+
              if ($this->JSONAsArray){  
 
             if (is_null( $Info)) { // json decode error
