@@ -15,4 +15,15 @@ class BCSLaravelStudentAPI extends BCSAPIClass
          $APIFields = ['{bookingid}' => $BookingID];
          return $this->CallAPI($apipath, $APIFields); 
     }
+
+
+
+    public function SubscriptionCourseInfo($subscriptioncourseid){
+        
+      //   https://bkoffice.azure.cookingisfun.ie/api/v3/subscriptions/subscribercourse/8
+         $apipath =   '/api/v3/subscriptions/subscribercourse/{subscribercourseid}';
+         $APIFields = ['{subscribercourseid}' => $subscriptioncourseid];
+         return $this->CallAPI($apipath, $APIFields); 
+    }
+
 }
