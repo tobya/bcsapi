@@ -7,7 +7,7 @@ class BCSAPIClass {
     public $JSONAsArray = true;
 
 
-    function __construct($APIRootURL, $APIKEY, $AsArray = true) 
+    function __construct($APIRootURL, $APIKEY, $AsArray = true)
     {
         $this->APIKEY = $APIKEY;
         $this->APIRootURL = $APIRootURL;
@@ -40,38 +40,40 @@ class BCSAPIClass {
         $this->LastCalledURL = $url;
         // Only call POST when required.
         if (!empty($PostData)){
-            return $this->POSTCURL($url, $PostData);
+            $data = $this->POSTCURL($url, $PostData);
+
         } else {
 
-            $a = file_get_contents($url);
+            $data = file_get_contents($url);
 
-            $Info = json_decode($a,$this->JSONAsArray);
+        }
+            $Info = json_decode($data, $this->JSONAsArray);
             //logger($Info);
-             if ($this->JSONAsArray){  
+             if ($this->JSONAsArray){
 
             if (is_null( $Info)) { // json decode error
                // echo 'Info is empty';
                 $Info = [];
                 $Info['jsonerror'] = json_last_error();
                 $Info['jsonerrormsg'] = json_last_error_msg();
-            } 
-          
+            }
+
             $Info['url'] = $url;
                 } else {
 
                     if (is_null( $Info)) { // json decode error
                        // echo 'Info is empty';
-                        
+
                         $Info->jsonerror = json_last_error();
                         $Info->jsonerrormsg = json_last_error_msg();
-                    } 
-                  
+                    }
+
                   //  $Info->url = $url;
                 }
-            
+          
             return $Info;
-        } 
-                
+
+
     }
 
     protected function POSTCURL($UrlBlock,$PostData){
@@ -91,7 +93,7 @@ class BCSAPIClass {
         //print_R( curl_error($ch));
         $response = curl_exec( $ch );
         //print_R( curl_error($ch));
-        return $response;        
+        return $response;
     }
 
 
