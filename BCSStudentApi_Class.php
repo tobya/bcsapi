@@ -70,8 +70,8 @@ class BCSStudentAPI extends BCSAPIClass
        */
 
   public function createStripePayment($BookingID, $AmountasFloat, $Comments)  {
-    $res = $this->CreatePayment($BookingID, $AmountasFloat, $Comments, 'StripeCreditCard');
-    return json_decode(json_encode(['status' => 200, 'result' => $res]));
+    return $this->CreatePayment($BookingID, $AmountasFloat, $Comments, 'StripeCreditCard');
+    
   }
 
 
