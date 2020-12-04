@@ -98,11 +98,11 @@ class BCSStudentAPI extends BCSAPIClass
      * @return void
      * @author 
      **/
-    function createStripeIntentOnBCS($BCSIndividualID,$BCSCourseID,$stripeUserKey,$stripeSetupIntentKey,$stripePaymentMethodKey){
+    function createStripeIntentOnBCS($BCSIndividualID,$BCSCourseID,$stripeUserKey,$stripeSetupIntentKey,$stripePaymentMethodKey,$source,$lastAmountCharged){
         $APIPath =   '/{apikey}/stripeintent/add';
-//        $APIFields = ['{bcsindividualid}' => $BCSIndividualID];
-        $stripeIntentPostData = ['bcsindividualid' => $BCSIndividualID,'bcscourseid' => $BCSCourseID,'stripeuserkey' => $stripeUserKey,'stripesetupintentkey' => $stripeSetupIntentKey,'stripepaymentmethodkey' => $stripePaymentMethodKey ];
-//        var_dump($APIFields);exit();
+        $APIFields = ['{bcsindividualid}' => $BCSIndividualID];
+        $stripeIntentPostData = ['bcsindividualid' => $BCSIndividualID,'bcscourseid' => $BCSCourseID,'stripeuserkey' => $stripeUserKey,'stripesetupintentkey' => $stripeSetupIntentKey,'stripepaymentmethodkey' => $stripePaymentMethodKey, 'source' => $source,'lastamountcharged' => $lastAmountCharged ];
+
         return $this->CallAPI($APIPath, [], $stripeIntentPostData);   
     }
 }
