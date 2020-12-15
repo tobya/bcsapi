@@ -71,16 +71,21 @@ class BCSStudentAPI extends BCSAPIClass
 
   public function createStripePayment($BookingID, $AmountasFloat, $Comments)  {
     return $this->CreatePayment($BookingID, $AmountasFloat, $Comments, 'StripeCreditCard');
-    
+
+  }
+
+  public function createVoucherPayment($BookingID, $AmountasFloat, $Comments, $VoucherCode)  {
+    return $this->CreatePayment($BookingID, $AmountasFloat, $Comments, 'VoucherPayment',$VoucherCode);
+
   }
 
 
-  public function CreatePayment($BookingID, $AmountasFloat, $Comments, $PaymentType){
+  public function CreatePayment($BookingID, $AmountasFloat, $Comments, $PaymentType, $Reference = null){
           $APIPath = '/{apikey}/bookings/{bookingid}/payment/create';
           $APIFields = ['{bookingid}' => $BookingID];
 
           // I think maybe I can just pass this straight through!
-          $paymentPostData = ['paymenttype' => $PaymentType, 'amount' => $AmountasFloat, 'comments' => $Comments];
+          $paymentPostData = ['paymenttype' => $PaymentType, 'amount' => $AmountasFloat, 'comments' => $Comments, 'reference' => $Reference];
 
             return $this->CallAPI($APIPath, $APIFields, $paymentPostData);
   }
