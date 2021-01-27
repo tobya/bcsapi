@@ -1,5 +1,5 @@
 {
-    "name": "tobya/BCSApi",
+    "name": "tobya/bcsapi",
     "description": "PHP Wrapper for BCS Api Libraries",
     "keywords": [
         "php",        
@@ -20,7 +20,7 @@
     },
   "autoload": {
     "psr-4": {
-      "BCS\\BCSAPI\\":"src/"
+      "tobya\\bcsapi\\":"src/"
     }
   }
 }
