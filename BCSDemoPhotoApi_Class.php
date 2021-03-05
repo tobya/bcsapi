@@ -1,10 +1,10 @@
 <?php
 
-require_once('BCSBaseApi_Class.php');
+ require_once __DIR__  . '\BCSBaseApi_Class.php';
 
 class BCSDemoPhotoAPI extends BCSAPIClass
 {
-    function __construct($APIRootURL) 
+    function __construct($APIRootURL)
     {
         $this->APIRootURL = $APIRootURL;
     }
@@ -49,7 +49,7 @@ class BCSDemoPhotoAPI extends BCSAPIClass
          if ($Month > -1 ){
             $apipath .= '{Month}/';
             $fields['{Month}'] = $Month;
-         } 
+         }
          if ($Day > -1 ){
             $apipath .= '{Day}/';
             $fields['{Day}'] = $Day;
@@ -68,6 +68,20 @@ class BCSDemoPhotoAPI extends BCSAPIClass
 
         $Fields = ['{demodate}' => $DemoDate];
          return $this->CallAPI($apipath, $Fields);
+    }
+
+    public function DemoPhotoByTemplate_Raw($DemoDate, $template = null){
+        $apipath = '/gallery/{demodate}/html';
+        $Fields = ['{demodate}' => $DemoDate];
+        if ($template){
+            $apipath = '/gallery/{demodate}/html/{template}';
+            $Fields['{template}'] = $template;
+        }
+
+        $this->Raw = true;
+       $RawData = $this->CallAPI($apipath, $Fields);
+       $this->Raw = false;
+       return $RawData;
     }
 
     public function PurgeCache() {
