@@ -110,4 +110,22 @@ class BCSStudentAPI extends BCSAPIClass
 
         return $this->CallAPI($APIPath, [], $stripeIntentPostData);   
     }
+
+    
+    /**
+     * note this is for update to  paymentmethod without an actual payment
+     *
+     * @return void
+     * @author 
+     **/
+    public function updateStripeIntentOnBCS($BCSIndividualID,$stripeUserKey,$stripeSetupIntentKey,$stripePaymentMethodKey,$source)
+    {
+        //$BCSIndividualID,$stripe_id,$setup_intent,$payment_method,$source;
+
+        $APIPath =   '/{apikey}/stripeintent/update';
+        $APIFields = ['{bcsindividualid}' => $BCSIndividualID];
+        $stripeIntentPostData = ['bcsindividualid' => $BCSIndividualID,'stripeuserkey' => $stripeUserKey,'stripesetupintentkey' => $stripeSetupIntentKey,'stripepaymentmethodkey' => $stripePaymentMethodKey, 'source' => $source];
+
+        return $this->CallAPI($APIPath, [], $stripeIntentPostData);
+    }
 }
