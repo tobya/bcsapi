@@ -5,6 +5,7 @@ class BCSAPIClass {
     protected $APIRootURL = '';
     protected $LastCalledURL = '';
     public $JSONAsArray = true;
+    public $Raw = false;
 
 
     function __construct($APIRootURL, $APIKEY, $AsArray = true)
@@ -47,6 +48,10 @@ class BCSAPIClass {
             $data = file_get_contents($url);
 
         }
+            if ($this->Raw){
+                return $data;
+            }
+            
             $Info = json_decode($data, $this->JSONAsArray);
             //logger($Info);
              if ($this->JSONAsArray){
@@ -70,7 +75,7 @@ class BCSAPIClass {
 
                   //  $Info->url = $url;
                 }
-          
+
             return $Info;
 
 
