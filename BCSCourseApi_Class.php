@@ -15,7 +15,7 @@ class BCSCourseAPI extends BCSAPIClass
     }
 
     public function CourseBookings($courseid) {
-        
+
          $apipath =   '/{apikey}/course/{courseid}/bookings';
          $APIFields = [ '{courseid}' => $courseid];
          return $this->CallAPI($apipath, $APIFields);
@@ -24,17 +24,17 @@ class BCSCourseAPI extends BCSAPIClass
     public function CourseDescription($courseid) {
         $apipath =   '/{apikey}/course/{courseid}/description';
         $APIFields = [ '{courseid}' => $courseid];
-        return $this->CallAPI($apipath, $APIFields);  
+        return $this->CallAPI($apipath, $APIFields);
     }
 
     public function AllCourseDates($courseid) {
         $apipath =   '/{apikey}/course/{courseid}/dates';
         $APIFields = [ '{courseid}' => $courseid];
-        return $this->CallAPI($apipath, $APIFields);  
+        return $this->CallAPI($apipath, $APIFields);
     }
 
     public function RunningCourses($onDate = 'today', $coursetypes = '0,1') {
-        
+
          $apipath =   '/{apikey}/courses/running/{coursedate}/{coursetypes}';
          $APIFields = [ '{coursedate}' => $onDate,
                         '{coursetypes}' => $coursetypes];
@@ -46,7 +46,7 @@ class BCSCourseAPI extends BCSAPIClass
     }
 
     Public function CourseStreamInfo($courseid){
-        $apipath = "/{apikey}/course/{courseid}/stream";
+        $apipath = "/{apikey}/course/{courseid}/courselinks";
         $APIFields = ['{courseid}' => $courseid];
         return $this->CallAPI($apipath, $APIFields);
     }
