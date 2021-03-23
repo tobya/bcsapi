@@ -1,6 +1,6 @@
 <?php
 
- require_once __DIR__  . '\BCSBaseApi_Class.php';
+ require_once __DIR__  . '/BCSBaseApi_Class.php';
 
 class BCSDemoPhotoAPI extends BCSAPIClass
 {
