@@ -60,3 +60,4 @@ class BCSRecipeBrowseAPI extends BCSRecipeAPI
 
     }
 }
+  }}
